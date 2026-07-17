@@ -44,6 +44,9 @@ export const yo: Dictionary = {
         'Wọn kò pín APK yìí nípasẹ̀ Play Store, nítorí náà Android yóò béèrè kí o gba ìfisórí láti orísun yìí láyè — èyí jẹ́ ohun tó yẹ.',
       pwaAlternative:
         'O kò fẹ́ fi ohunkóhun sórí ẹ̀rọ? App wẹ́ẹ̀bù yìí náà ń ṣiṣẹ́ ní kíkún láìsí ìtakùn ayélujára, o sì lè fi kún ojú ìbojú ilé láti inú mẹ́nù aṣàwákiri rẹ.',
+      sha256Label: 'SHA-256 (fún ìjẹ́rìí ìsọ̀kalẹ̀ náà)',
+      copyButton: 'Dà kọ́pì',
+      copiedLabel: 'Ti dà kọ́pì!',
     },
     iosApp: {
       heading: 'Fi kún Ojú Ìboju Ilé (iPhone/iPad)',

@@ -43,6 +43,9 @@ export const ja: Dictionary = {
         'このAPKはPlayストア外で配布されているため、インストール時に「提供元不明のアプリ」の許可を求められますが、正常な動作です。',
       pwaAlternative:
         'インストール不要派の方へ:このWebアプリ自体も完全オフラインで動作し、ブラウザのメニューからホーム画面に追加できます。',
+      sha256Label: 'SHA-256(整合性検証用)',
+      copyButton: 'コピー',
+      copiedLabel: 'コピーしました',
     },
     iosApp: {
       heading: 'ホーム画面に追加(iPhone/iPad)',

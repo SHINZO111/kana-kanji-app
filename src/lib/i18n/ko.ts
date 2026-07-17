@@ -43,6 +43,9 @@ export const ko: Dictionary = {
         '이 APK는 Play 스토어 밖에서 배포되므로, 설치할 때 Android가 이 출처의 앱 설치를 허용해 달라고 요청합니다. 정상적인 과정입니다.',
       pwaAlternative:
         '설치 없이 쓰고 싶다면? 이 웹 앱 자체도 완전한 오프라인 사용을 지원하며, 브라우저 메뉴에서 홈 화면에 추가할 수 있습니다.',
+      sha256Label: 'SHA-256 (다운로드 무결성 검증용)',
+      copyButton: '복사',
+      copiedLabel: '복사됨!',
     },
     iosApp: {
       heading: '홈 화면에 추가 (iPhone/iPad)',

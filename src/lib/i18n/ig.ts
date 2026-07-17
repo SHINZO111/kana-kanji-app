@@ -44,6 +44,9 @@ export const ig: Dictionary = {
         'A naghị ekesa APK a site na Play Store, ya mere Android ga-arịọ ka i kwe ka e wụnye ngwa site n’ebe a — nke ahụ bụ ihe a na-atụ anya ya.',
       pwaAlternative:
         'Ịchọghị ịwụnye ihe ọ bụla? Ngwa weebụ a na-arụkwa ọrụ nke ọma na-enweghị ịntanetị, i nwekwara ike itinye ya na ihuenyo mmalite site na menu ihe nchọgharị gị.',
+      sha256Label: 'SHA-256 (maka nyocha nbudata)',
+      copyButton: 'Detuo',
+      copiedLabel: 'Edetuola!',
     },
     iosApp: {
       heading: 'Tinye na Ihuenyo Mmalite (iPhone/iPad)',

@@ -44,6 +44,9 @@ export const pt: Dictionary = {
         'Este APK não é distribuído pela Play Store, então o Android vai pedir permissão para instalar apps desta origem — isso é esperado.',
       pwaAlternative:
         'Prefere não instalar nada? Este app web também funciona totalmente offline e pode ser adicionado à tela inicial pelo menu do navegador.',
+      sha256Label: 'SHA-256 (para verificar o download)',
+      copyButton: 'Copiar',
+      copiedLabel: 'Copiado!',
     },
     iosApp: {
       heading: 'Adicionar à Tela de Início (iPhone/iPad)',

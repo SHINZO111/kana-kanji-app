@@ -6,6 +6,10 @@
 [**Android APK ダウンロード**](https://kanakanji.pages.dev/download/kanakanji.apk) &nbsp;|&nbsp;
 [**GitHub Releases から APK**](https://github.com/SHINZO111/kana-kanji-app/releases/latest/download/kanakanji.apk)
 
+APKダウンロードは
+[SHA-256チェックサム](https://kanakanji.pages.dev/download/kanakanji.apk.sha256)
+で検証できます(サイト上のダウンロードカードにも同じ値を表示しています)。
+
 English README: [README.md](README.md)
 
 <p align="center">

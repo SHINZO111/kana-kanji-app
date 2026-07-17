@@ -43,6 +43,9 @@ export const fr: Dictionary = {
         'Cet APK n’est pas distribué via le Play Store : Android vous demandera donc d’autoriser l’installation depuis cette source — c’est normal.',
       pwaAlternative:
         'Vous préférez ne rien installer ? Cette application web fonctionne aussi entièrement hors ligne et peut être ajoutée à l’écran d’accueil depuis le menu de votre navigateur.',
+      sha256Label: 'SHA-256 (pour vérifier le téléchargement)',
+      copyButton: 'Copier',
+      copiedLabel: 'Copié !',
     },
     iosApp: {
       heading: 'Ajouter à l’écran d’accueil (iPhone/iPad)',

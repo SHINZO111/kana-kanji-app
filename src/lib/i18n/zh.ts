@@ -41,6 +41,9 @@ export const zh: Dictionary = {
       downloadButton: '下载 APK(约 7.8 MB)',
       unknownSourceNote: '此 APK 未通过 Play 商店分发,因此 Android 会提示你允许安装未知来源的应用——这是正常现象。',
       pwaAlternative: '不想安装应用？这个网页应用同样支持完整离线使用,并可以通过浏览器菜单添加到主屏幕。',
+      sha256Label: 'SHA-256(用于校验下载文件)',
+      copyButton: '复制',
+      copiedLabel: '已复制!',
     },
     iosApp: {
       heading: '添加到主屏幕(iPhone/iPad)',

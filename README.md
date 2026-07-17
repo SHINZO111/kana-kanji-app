@@ -7,6 +7,10 @@ readings, and vocabulary — free, ad-free, and fully offline.
 [**Download Android APK**](https://kanakanji.pages.dev/download/kanakanji.apk) &nbsp;|&nbsp;
 [**APK via GitHub Releases**](https://github.com/SHINZO111/kana-kanji-app/releases/latest/download/kanakanji.apk)
 
+The APK download can be verified against its
+[SHA-256 checksum](https://kanakanji.pages.dev/download/kanakanji.apk.sha256)
+(also shown on the download card on the site itself).
+
 日本語版: [README.ja.md](README.ja.md)
 
 <p align="center">

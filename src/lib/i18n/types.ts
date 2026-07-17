@@ -64,6 +64,10 @@ export interface Dictionary {
       downloadButton: string
       unknownSourceNote: string
       pwaAlternative: string
+      /** Label for the SHA-256 checksum row, fetched at runtime from public/download/kanakanji.apk.sha256 (see Home.tsx). */
+      sha256Label: string
+      copyButton: string
+      copiedLabel: string
     }
     /** Web-only iOS/iPadOS "Add to Home Screen" PWA install guide — hidden inside the Capacitor native shell (see Home.tsx). */
     iosApp: {

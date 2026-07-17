@@ -43,6 +43,9 @@ export const vi: Dictionary = {
         'APK này không được phân phối qua Play Store, nên Android sẽ yêu cầu bạn cho phép cài đặt ứng dụng từ nguồn này — điều đó là bình thường.',
       pwaAlternative:
         'Không muốn cài gì cả? Ứng dụng web này cũng hoạt động hoàn toàn ngoại tuyến và có thể được thêm vào màn hình chính từ menu trình duyệt.',
+      sha256Label: 'SHA-256 (để xác minh tệp tải xuống)',
+      copyButton: 'Sao chép',
+      copiedLabel: 'Đã sao chép!',
     },
     iosApp: {
       heading: 'Thêm vào Màn hình chính (iPhone/iPad)',

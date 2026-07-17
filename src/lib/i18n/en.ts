@@ -42,6 +42,9 @@ export const en: Dictionary = {
         "This APK isn't distributed through the Play Store, so Android will ask you to allow installs from this source — that's expected.",
       pwaAlternative:
         'Prefer not to install anything? This web app also works fully offline and can be added to your home screen from your browser menu.',
+      sha256Label: 'SHA-256 (for verifying the download)',
+      copyButton: 'Copy',
+      copiedLabel: 'Copied!',
     },
     iosApp: {
       heading: 'Add to your Home Screen (iPhone/iPad)',

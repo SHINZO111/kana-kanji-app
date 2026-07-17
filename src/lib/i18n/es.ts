@@ -43,6 +43,9 @@ export const es: Dictionary = {
         'Este APK no se distribuye a través de la Play Store, así que Android te pedirá permitir instalar desde este origen — es normal.',
       pwaAlternative:
         '¿Prefieres no instalar nada? Esta app web también funciona sin conexión y puedes añadirla a la pantalla de inicio desde el menú de tu navegador.',
+      sha256Label: 'SHA-256 (para verificar la descarga)',
+      copyButton: 'Copiar',
+      copiedLabel: '¡Copiado!',
     },
     iosApp: {
       heading: 'Añadir a la pantalla de inicio (iPhone/iPad)',

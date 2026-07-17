@@ -43,6 +43,9 @@ export const id: Dictionary = {
         'APK ini tidak didistribusikan lewat Play Store, jadi Android akan meminta izin untuk memasang aplikasi dari sumber ini — itu hal yang wajar.',
       pwaAlternative:
         'Tidak ingin memasang apa pun? Aplikasi web ini juga berfungsi penuh secara offline dan bisa ditambahkan ke layar utama lewat menu peramban.',
+      sha256Label: 'SHA-256 (untuk memverifikasi unduhan)',
+      copyButton: 'Salin',
+      copiedLabel: 'Disalin!',
     },
     iosApp: {
       heading: 'Tambahkan ke Layar Utama (iPhone/iPad)',

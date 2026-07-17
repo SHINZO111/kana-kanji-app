@@ -43,6 +43,9 @@ export const ha: Dictionary = {
         'Ba a rarraba wannan APK ta Play Store ba, don haka Android zai nemi izininka na shigar da manhaja daga wannan tushe — hakan al’ada ce.',
       pwaAlternative:
         'Ba ka son shigar da komai? Wannan manhajar yanar gizo ma tana aiki gaba ɗaya ba tare da intanet ba, kuma ana iya ƙara ta a allon gida daga menu na burauza.',
+      sha256Label: 'SHA-256 (don tabbatar da sauke fayil)',
+      copyButton: 'Kwafa',
+      copiedLabel: 'An kwafa!',
     },
     iosApp: {
       heading: 'Ƙara zuwa allon gida (iPhone/iPad)',

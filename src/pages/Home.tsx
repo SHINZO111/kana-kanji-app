@@ -136,6 +136,69 @@ function AndroidInstallCard({ t }: { t: Dictionary }) {
       </a>
       <p className="mt-3 text-sm text-slate-500">{t.home.androidApp.unknownSourceNote}</p>
       <p className="mt-1 text-sm text-slate-500">{t.home.androidApp.pwaAlternative}</p>
+      <Sha256Row t={t} />
+    </div>
+  )
+}
+
+/**
+ * Displays the release APK's SHA-256 checksum, fetched at runtime from
+ * public/download/kanakanji.apk.sha256 (written by data-pipeline/copy-apk.mjs
+ * alongside the APK itself — see that file). Fetched rather than hardcoded so
+ * the value can never drift from the actual file it describes; silently
+ * renders nothing if the file isn't present (e.g. local dev before
+ * `npm run sync:apk`, or an offline/native context).
+ */
+function Sha256Row({ t }: { t: Dictionary }) {
+  const [hash, setHash] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/download/kanakanji.apk.sha256')
+      .then((res) => (res.ok ? res.text() : null))
+      .then((text) => {
+        if (cancelled || !text) return
+        // File format: "<hash>  kanakanji.apk"
+        const value = text.trim().split(/\s+/)[0]
+        if (value) setHash(value)
+      })
+      .catch(() => {
+        // Missing/unreachable file just means no checksum row — not an error
+        // worth surfacing to the user.
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  if (!hash) return null
+
+  const handleCopy = () => {
+    if (!navigator.clipboard) return
+    navigator.clipboard
+      .writeText(hash)
+      .then(() => {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      })
+      .catch(() => {
+        // Permission denied or unsupported — leave the button as-is rather
+        // than claiming success or throwing an unhandled rejection.
+      })
+  }
+
+  return (
+    <div className="mt-3 text-sm text-slate-500">
+      <span>{t.home.androidApp.sha256Label}: </span>
+      <code className="break-all font-mono text-xs text-slate-600">{hash}</code>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="ml-2 rounded border border-slate-300 px-2 py-0.5 text-xs text-slate-700 hover:bg-slate-50"
+      >
+        {copied ? t.home.androidApp.copiedLabel : t.home.androidApp.copyButton}
+      </button>
     </div>
   )
 }
