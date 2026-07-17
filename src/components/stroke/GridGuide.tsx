@@ -16,10 +16,13 @@ interface GridGuideProps {
   padding?: number
 }
 
-/** slate-300 — faint enough not to compete with strokes, outlines, or hints. */
-const GUIDE_COLOR = '#cbd5e1'
-const GUIDE_OPACITY = 0.5
-const CROSS_DASH = '6 5'
+/** slate-400 — visible at a glance, but still clearly behind strokes/hints. */
+const GUIDE_COLOR = '#94a3b8'
+const GUIDE_OPACITY = 0.65
+/** Dotted (点線) crosshair, calligraphy-practice-book style: round dots via
+ * zero-length dashes + round linecap. */
+const CROSS_DASH = '0.5 7'
+const CROSS_WIDTH = 2
 
 export default function GridGuide({ size, padding = STROKE_WRITER_PADDING }: GridGuideProps) {
   const min = padding
@@ -37,8 +40,10 @@ export default function GridGuide({ size, padding = STROKE_WRITER_PADDING }: Gri
     >
       <g stroke={GUIDE_COLOR} strokeOpacity={GUIDE_OPACITY} strokeWidth={1} fill="none">
         <rect x={min} y={min} width={span} height={span} />
-        <line x1={min} y1={mid} x2={min + span} y2={mid} strokeDasharray={CROSS_DASH} />
-        <line x1={mid} y1={min} x2={mid} y2={min + span} strokeDasharray={CROSS_DASH} />
+        <g strokeWidth={CROSS_WIDTH} strokeLinecap="round" strokeDasharray={CROSS_DASH}>
+          <line x1={min} y1={mid} x2={min + span} y2={mid} />
+          <line x1={mid} y1={min} x2={mid} y2={min + span} />
+        </g>
       </g>
     </svg>
   )
