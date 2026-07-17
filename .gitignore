@@ -24,6 +24,10 @@ public/download/
 # PWA generated service worker files
 dev-dist
 
+# Local state from `npx wrangler pages dev dist` (used to verify public/_headers
+# — e.g. the CSP — against a production-equivalent server; see SECURITY.md).
+.wrangler/
+
 # Test output
 coverage/
 test-results/
