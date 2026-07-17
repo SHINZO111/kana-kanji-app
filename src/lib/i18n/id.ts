@@ -52,6 +52,11 @@ export const id: Dictionary = {
       step2: 'Ketuk tombol Bagikan',
       step3: 'Ketuk "Tambah ke Layar Utama"',
     },
+    share: {
+      heading: 'Bagikan KANAKANJI',
+      description: 'Tunjukkan kode QR ini ke teman agar mereka bisa memindainya dan mencoba KANAKANJI juga.',
+      qrAlt: 'Kode QR yang mengarah ke aplikasi web KANAKANJI',
+    },
   },
 
   browse: {

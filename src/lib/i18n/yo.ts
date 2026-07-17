@@ -53,6 +53,11 @@ export const yo: Dictionary = {
       step2: 'Tẹ bọ́tìnnì Share',
       step3: 'Tẹ "Add to Home Screen"',
     },
+    share: {
+      heading: 'Pín KANAKANJI',
+      description: 'Fi kóòdù QR yìí hàn ọ̀rẹ́ kan kí wọ́n lè yẹ̀ ẹ́ wò kí wọ́n sì dánrawò KANAKANJI pẹ̀lú.',
+      qrAlt: 'Kóòdù QR tí ó lọ sí app wẹ́ẹ̀bù KANAKANJI',
+    },
   },
 
   browse: {

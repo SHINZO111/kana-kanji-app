@@ -52,6 +52,11 @@ export const ha: Dictionary = {
       step2: 'Danna maɓallin Share',
       step3: 'Danna "Add to Home Screen"',
     },
+    share: {
+      heading: 'Raba KANAKANJI',
+      description: 'Nuna wa aboki wannan lambar QR domin ya iya bincika ta ya gwada KANAKANJI shi ma.',
+      qrAlt: 'Lambar QR mai kaiwa zuwa manhajar yanar gizo ta KANAKANJI',
+    },
   },
 
   browse: {

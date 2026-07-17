@@ -49,6 +49,11 @@ export const zh: Dictionary = {
       step2: '点击分享按钮',
       step3: '点击"添加到主屏幕"',
     },
+    share: {
+      heading: '分享 KANAKANJI',
+      description: '把这个二维码给朋友看,让他们扫码也来试试 KANAKANJI。',
+      qrAlt: '指向 KANAKANJI 网页应用的二维码',
+    },
   },
 
   browse: {

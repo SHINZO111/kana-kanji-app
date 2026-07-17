@@ -52,6 +52,11 @@ export const ja: Dictionary = {
       step2: '共有ボタンをタップ',
       step3: '「ホーム画面に追加」をタップ',
     },
+    share: {
+      heading: 'KANAKANJIをシェア',
+      description: 'このQRコードを友だちに見せてスキャンしてもらい、KANAKANJIを試してもらいましょう。',
+      qrAlt: 'KANAKANJIのWebアプリにつながるQRコード',
+    },
   },
 
   browse: {

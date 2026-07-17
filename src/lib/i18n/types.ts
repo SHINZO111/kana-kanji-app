@@ -73,6 +73,12 @@ export interface Dictionary {
       step2: string
       step3: string
     }
+    /** QR code card linking to the web app — shown everywhere, including inside the Capacitor native shell (see Home.tsx). */
+    share: {
+      heading: string
+      description: string
+      qrAlt: string
+    }
   }
 
   browse: {

@@ -51,6 +51,11 @@ export const ko: Dictionary = {
       step2: '공유 버튼을 탭합니다',
       step3: '"홈 화면에 추가"를 탭합니다',
     },
+    share: {
+      heading: 'KANAKANJI 공유하기',
+      description: '이 QR 코드를 친구에게 보여주고 스캔해서 KANAKANJI를 함께 사용해 보세요.',
+      qrAlt: 'KANAKANJI 웹 앱으로 연결되는 QR 코드',
+    },
   },
 
   browse: {

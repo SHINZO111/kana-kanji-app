@@ -52,6 +52,11 @@ export const fr: Dictionary = {
       step2: 'Appuyez sur le bouton Partager',
       step3: 'Appuyez sur « Sur l’écran d’accueil »',
     },
+    share: {
+      heading: 'Partager KANAKANJI',
+      description: 'Montrez ce code QR à un ami pour qu’il puisse le scanner et essayer KANAKANJI aussi.',
+      qrAlt: 'Code QR renvoyant vers l’application web KANAKANJI',
+    },
   },
 
   browse: {

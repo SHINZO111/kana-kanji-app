@@ -6,9 +6,13 @@
 //   kanakanji-qr-branded.png  — QR with the app icon centered, 1024x1024
 //                               (error correction H tolerates the covered center)
 //
+// Also copies the branded PNG to public/qr.png, which the Home page's
+// "Share KANAKANJI" card (src/pages/Home.tsx) serves directly — keeping it
+// regeneratable here instead of a one-off manual copy.
+//
 // Run: node store-assets/scripts/generate-qr.mjs
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import QRCode from 'qrcode'
@@ -18,6 +22,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.join(__dirname, '..', '..')
 const OUT_DIR = path.join(REPO_ROOT, 'store-assets', 'qr')
 const ICON_PATH = path.join(REPO_ROOT, 'public', 'icons', 'icon-192.png')
+const PUBLIC_QR_PATH = path.join(REPO_ROOT, 'public', 'qr.png')
 
 const URL = 'https://kanakanji.pages.dev'
 const SIZE = 1024
@@ -61,10 +66,14 @@ async function main() {
   <image x="${iconPos}" y="${iconPos}" width="${iconUnits}" height="${iconUnits}" href="data:image/png;base64,${iconData}"/>
 </svg>`
   const brandedSvg = brandedBase.replace('</svg>', overlay)
-  const brandedBytes = await renderPng(brandedSvg, path.join(OUT_DIR, 'kanakanji-qr-branded.png'))
+  const brandedPath = path.join(OUT_DIR, 'kanakanji-qr-branded.png')
+  const brandedBytes = await renderPng(brandedSvg, brandedPath)
+
+  await copyFile(brandedPath, PUBLIC_QR_PATH)
 
   console.log(`[generate-qr] ${URL}`)
   console.log(`[generate-qr] wrote kanakanji-qr.svg, kanakanji-qr.png (${plainBytes} bytes), kanakanji-qr-branded.png (${brandedBytes} bytes)`)
+  console.log(`[generate-qr] copied kanakanji-qr-branded.png -> ${path.relative(REPO_ROOT, PUBLIC_QR_PATH)}`)
 }
 
 main().catch((err) => {

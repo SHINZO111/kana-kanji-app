@@ -51,6 +51,11 @@ export const en: Dictionary = {
       step2: 'Tap the Share button',
       step3: 'Tap "Add to Home Screen"',
     },
+    share: {
+      heading: 'Share KANAKANJI',
+      description: 'Show this QR code to a friend so they can scan it and try KANAKANJI too.',
+      qrAlt: 'QR code linking to the KANAKANJI web app',
+    },
   },
 
   browse: {

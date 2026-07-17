@@ -53,6 +53,11 @@ export const ig: Dictionary = {
       step2: 'Pị bọtịnụ Share',
       step3: 'Pị "Add to Home Screen"',
     },
+    share: {
+      heading: 'Kesaa KANAKANJI',
+      description: 'Gosi enyi gị koodu QR a ka o wee nwee ike ịnyocha ya ma nwalee KANAKANJI kwa.',
+      qrAlt: 'Koodu QR na-eduga na ngwa weebụ KANAKANJI',
+    },
   },
 
   browse: {

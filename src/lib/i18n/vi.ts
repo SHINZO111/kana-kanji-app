@@ -52,6 +52,11 @@ export const vi: Dictionary = {
       step2: 'Nhấn vào nút Chia sẻ',
       step3: 'Nhấn "Thêm vào Màn hình chính"',
     },
+    share: {
+      heading: 'Chia sẻ KANAKANJI',
+      description: 'Cho bạn bè xem mã QR này để họ quét và dùng thử KANAKANJI.',
+      qrAlt: 'Mã QR dẫn đến ứng dụng web KANAKANJI',
+    },
   },
 
   browse: {

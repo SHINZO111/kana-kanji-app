@@ -15,6 +15,11 @@ interface HomeStats {
   reviewCount: number
 }
 
+// Matches the URL encoded into store-assets/qr/kanakanji-qr-branded.png (see
+// store-assets/scripts/generate-qr.mjs) — kept as a single source of truth
+// for the text shown next to the QR code on the Share card below.
+const SHARE_URL = 'https://kanakanji.pages.dev'
+
 export default function Home() {
   const { t } = useTranslation()
   const lastSetId = getLastPracticeSetId()
@@ -97,6 +102,22 @@ export default function Home() {
           )}
         </div>
       )}
+
+      {/* Unlike the install-guide cards above, this is shown inside the
+          native app too — someone with the app already installed can still
+          hand their phone to a friend and let them scan their way in. */}
+      <div className="mt-6 rounded-lg border border-slate-200 px-6 py-5 text-left">
+        <h2 className="text-sm font-medium text-slate-500">{t.home.share.heading}</h2>
+        <p className="mt-1 text-slate-700">{t.home.share.description}</p>
+        <img
+          src="/qr.png"
+          alt={t.home.share.qrAlt}
+          width={200}
+          height={200}
+          className="mx-auto mt-4 w-full max-w-[200px]"
+        />
+        <p className="mt-3 text-center text-sm text-slate-500">{SHARE_URL}</p>
+      </div>
     </main>
   )
 }
