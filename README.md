@@ -84,14 +84,13 @@ their romaji, which are hand-written in `data-pipeline/lib/kana-table.mjs`).
 [`hanzi-writer-data-jp`](https://github.com/chanind/hanzi-writer-data-jp)
 GitHub repo (the published npm package ships no character data, only stub
 files — the pipeline downloads the repo directly). That dataset has no
-hiragana/katakana, so kana stroke data is instead generated from
-[KanjiVG](https://kanjivg.tagaini.net/) SVGs, converted with a ported
-version of
-[Moritz72/KanjiVGToHanziWriterConverter](https://github.com/Moritz72/KanjiVGToHanziWriterConverter)
-(MIT). A handful of 2010-jōyō glyph variants that aren't present in the
-dataset under their exact codepoint are substituted with their
-visually-identical common-form variant — see `VARIANT_FALLBACK` in
-`data-pipeline/build-strokes.mjs`.
+hiragana/katakana, so kana stroke data is converted from
+[animCJK](https://github.com/parsimonhi/animCJK)'s `svgsJaKana` set
+(brush-shaped outlines + medians, GNU LGPL v3+) by
+`data-pipeline/lib/animcjk-kana-to-hanziwriter.mjs`. A handful of 2010-jōyō
+glyph variants that aren't present in the dataset under their exact
+codepoint are substituted with their visually-identical common-form
+variant — see `VARIANT_FALLBACK` in `data-pipeline/build-strokes.mjs`.
 
 `data-pipeline/raw/` and `public/data/strokes/` are gitignored generated
 artifacts; `public/data/kana.json`, `public/data/kanji/*.json`, and

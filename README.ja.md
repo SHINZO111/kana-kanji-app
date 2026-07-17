@@ -82,13 +82,13 @@ npm run lint       # oxlint
 の GitHub リポジトリから取得しています(公開されている npm パッケージには
 スタブファイルしか含まれておらず、実データはリポジトリを直接ダウンロードして
 取得する必要があります)。このデータセットにはひらがな・カタカナが含まれて
-いないため、かなの書き順データは代わりに
-[KanjiVG](https://kanjivg.tagaini.net/) の SVG から生成しており、変換には
-[Moritz72/KanjiVGToHanziWriterConverter](https://github.com/Moritz72/KanjiVGToHanziWriterConverter)
-(MIT)を移植したスクリプトを使用しています。2010年改定常用漢字のうち一部の
-異体字はデータセットに正確な字体で存在しないため、見た目がほぼ同一の通用字体
-で代替しています(詳細は `data-pipeline/build-strokes.mjs` の
-`VARIANT_FALLBACK` を参照)。
+いないため、かなの書き順データは
+[animCJK](https://github.com/parsimonhi/animCJK) の `svgsJaKana`
+セット(筆形アウトライン+中心線、GNU LGPL v3+)から
+`data-pipeline/lib/animcjk-kana-to-hanziwriter.mjs` で変換しています。
+2010年改定常用漢字のうち一部の異体字はデータセットに正確な字体で存在しない
+ため、見た目がほぼ同一の通用字体で代替しています(詳細は
+`data-pipeline/build-strokes.mjs` の `VARIANT_FALLBACK` を参照)。
 
 `data-pipeline/raw/` と `public/data/strokes/` は生成物のため gitignore
 対象です。`public/data/kana.json`・`public/data/kanji/*.json`・
