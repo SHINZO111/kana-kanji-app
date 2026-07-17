@@ -49,6 +49,7 @@
     "fake-indexeddb": "^6.2.5",
     "fast-xml-parser": "^5.10.1",
     "oxlint": "^1.71.0",
+    "qrcode": "^1.5.4",
     "sax": "^1.6.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
