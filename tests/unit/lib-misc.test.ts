@@ -1,0 +1,142 @@
+// Unit tests for the smaller src/lib helpers: stroke-data-loader,
+// last-practice-set (localStorage), dom-utils, and the gojūon layout table.
+
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { charToHex, strokeDataLoader } from '../../src/lib/stroke-data-loader'
+import { getLastPracticeSetId, setLastPracticeSetId } from '../../src/lib/last-practice-set'
+import { clearChildren } from '../../src/lib/dom-utils'
+import { GOJUON_COLUMNS, GOJUON_ROWS } from '../../src/lib/gojuon-layout'
+
+const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public')
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
+
+describe('charToHex', () => {
+  it('returns the lowercase hex code point', () => {
+    expect(charToHex('水')).toBe('6c34')
+    expect(charToHex('あ')).toBe('3042')
+    expect(charToHex('ア')).toBe('30a2')
+  })
+
+  it('uses the full code point for surrogate-pair characters', () => {
+    expect(charToHex('𠮟')).toBe('20b9f') // jouyou kanji outside the BMP
+  })
+
+  it('throws on an empty string', () => {
+    expect(() => charToHex('')).toThrow()
+  })
+})
+
+describe('strokeDataLoader', () => {
+  function stubFetch(handler?: (url: string) => Response) {
+    const fetchMock = vi.fn(async (input: string | URL | Request) => {
+      const url = String(input)
+      if (handler) return handler(url)
+      const filePath = path.join(PUBLIC_DIR, url.replace(/^\//, ''))
+      return new Response(readFileSync(filePath, 'utf-8'), { status: 200 })
+    })
+    vi.stubGlobal('fetch', fetchMock)
+    return fetchMock
+  }
+
+  it('loads stroke data by hex filename and caches it', async () => {
+    const fetchMock = stubFetch()
+    const noop = () => {}
+    const data = (await strokeDataLoader('水', noop, noop)) as {
+      strokes: string[]
+      medians: number[][][]
+    }
+    expect(data.strokes.length).toBeGreaterThan(0)
+    expect(data.medians.length).toBe(data.strokes.length)
+    expect(String(fetchMock.mock.calls[0][0])).toContain('data/strokes/6c34.json')
+
+    const callsAfterFirst = fetchMock.mock.calls.length
+    await strokeDataLoader('水', noop, noop)
+    expect(fetchMock.mock.calls.length).toBe(callsAfterFirst) // served from cache
+  })
+
+  it('rejects with a descriptive error on HTTP failure', async () => {
+    stubFetch(() => new Response('nope', { status: 404 }))
+    const noop = () => {}
+    await expect(strokeDataLoader('鬱' /* uncached */, noop, noop)).rejects.toThrow(/HTTP 404/)
+  })
+})
+
+describe('last-practice-set (localStorage)', () => {
+  function stubLocalStorage(initial: Record<string, string> = {}) {
+    const backing = new Map(Object.entries(initial))
+    vi.stubGlobal('window', {
+      localStorage: {
+        getItem: (key: string) => backing.get(key) ?? null,
+        setItem: (key: string, value: string) => void backing.set(key, value),
+      },
+    })
+    return backing
+  }
+
+  it('round-trips a valid set id', () => {
+    stubLocalStorage()
+    setLastPracticeSetId('grade3')
+    expect(getLastPracticeSetId()).toBe('grade3')
+  })
+
+  it('returns null when nothing is stored', () => {
+    stubLocalStorage()
+    expect(getLastPracticeSetId()).toBeNull()
+  })
+
+  it('rejects unknown stored values instead of returning garbage', () => {
+    stubLocalStorage({ 'kana-kanji:last-practice-set': 'not-a-set' })
+    expect(getLastPracticeSetId()).toBeNull()
+  })
+
+  it('degrades to null / no-op when storage throws (private browsing)', () => {
+    vi.stubGlobal('window', {
+      localStorage: {
+        getItem: () => {
+          throw new Error('denied')
+        },
+        setItem: () => {
+          throw new Error('denied')
+        },
+      },
+    })
+    expect(getLastPracticeSetId()).toBeNull()
+    expect(() => setLastPracticeSetId('hiragana')).not.toThrow()
+  })
+})
+
+describe('clearChildren', () => {
+  it('removes every child node', () => {
+    const children: string[] = ['a', 'b', 'c']
+    const element = {
+      get firstChild() {
+        return children.length > 0 ? children[0] : null
+      },
+      removeChild() {
+        children.shift()
+      },
+    }
+    clearChildren(element as unknown as Element)
+    expect(children).toHaveLength(0)
+  })
+})
+
+describe('gojūon layout', () => {
+  it('has 5 vowel columns and rows of matching width', () => {
+    expect(GOJUON_COLUMNS).toEqual(['a', 'i', 'u', 'e', 'o'])
+    for (const row of GOJUON_ROWS) {
+      expect(row.romaji).toHaveLength(5)
+    }
+  })
+
+  it('contains exactly the 46 basic kana romaji, without duplicates', () => {
+    const filled = GOJUON_ROWS.flatMap((row) => row.romaji).filter((r) => r !== null)
+    expect(filled).toHaveLength(46)
+    expect(new Set(filled).size).toBe(46)
+  })
+})

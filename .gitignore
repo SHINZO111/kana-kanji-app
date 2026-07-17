@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Data pipeline: raw downloads and copied stroke data are large generated
+# artifacts. Regenerate with `npm run build:data`.
+data-pipeline/raw/
+public/data/strokes/
+
+# Android release APK, copied in for the landing page download link.
+# Regenerate with `npm run sync:apk` (see data-pipeline/copy-apk.mjs).
+public/download/
+
+# PWA generated service worker files
+dev-dist
+
+# Test output
+coverage/
+test-results/
+playwright-report/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

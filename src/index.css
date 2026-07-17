@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+/*
+ * Applied (together with lang="ja") to any element that displays Japanese
+ * character glyphs (kanji, hiragana, katakana) — the grid cells in Browse,
+ * search results, and example words/readings on CharacterDetail. <html
+ * lang="en"> stays as the UI language; only the glyph text itself gets
+ * lang="ja" so screen readers and font-fallback logic treat it correctly.
+ *
+ * Without this, some platforms can render jōyō kanji using Han-unified CJK
+ * glyphs from a Chinese-leaning fallback font, which differ subtly from
+ * their Japanese forms. Named font stack (system JP fonts only — no
+ * bundled webfont, zero bundle-size cost) per plan work item C.
+ */
+.glyph-ja {
+  font-family:
+    'Hiragino Sans',
+    'Yu Gothic UI',
+    'Yu Gothic',
+    'Noto Sans CJK JP',
+    'Noto Sans JP',
+    sans-serif;
+}
