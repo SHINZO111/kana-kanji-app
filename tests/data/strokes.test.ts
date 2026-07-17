@@ -1,12 +1,22 @@
 // Validates every stroke-data file in public/data/strokes/{hex}.json
 // (HanziWriter format, loaded by src/lib/stroke-data-loader.ts).
+//
+// public/data/strokes/ is gitignored (regenerated via `npm run data:strokes`
+// — see .gitignore), so a fresh `npm ci` checkout (e.g. in CI) has no
+// strokes directory at all. Guard the whole suite behind an existence check
+// so `npm test` still passes there instead of failing at module load with
+// ENOENT; anyone who has run `npm run build:data` locally still gets full
+// coverage as before.
 
+import { existsSync } from 'node:fs'
+import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import type { IndexEntry, StrokeData } from '../../src/lib/types'
-import { charToHex, listJsonFiles, readJson } from '../helpers/data-files'
+import { DATA_DIR, charToHex, listJsonFiles, readJson } from '../helpers/data-files'
 
-const index = readJson<IndexEntry[]>('index.json')
-const strokeFiles = new Set(listJsonFiles('strokes'))
+const strokesDirExists = existsSync(path.join(DATA_DIR, 'strokes'))
+const index = strokesDirExists ? readJson<IndexEntry[]>('index.json') : []
+const strokeFiles = strokesDirExists ? new Set(listJsonFiles('strokes')) : new Set<string>()
 
 /**
  * Characters whose KANJIDIC2 stroke count (index.json / kanji detail JSON)
@@ -20,7 +30,7 @@ const KNOWN_STROKE_COUNT_EXCEPTIONS = new Set([
   '僅', '牙', '璃', '葛', '衷', '謎', '賭', '遜', '遡', '離', '頰', '餅', '餌',
 ])
 
-describe('public/data/strokes/*.json', () => {
+describe.skipIf(!strokesDirExists)('public/data/strokes/*.json', () => {
   it('has a stroke file for every character in index.json (and no orphans)', () => {
     const expected = new Set(index.map((e) => `${charToHex(e.char)}.json`))
     const missing = [...expected].filter((f) => !strokeFiles.has(f))

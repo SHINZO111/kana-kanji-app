@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+# Least-privilege default: this workflow only reads the repo (checkout +
+# `npm ci`/lint/test). Bump per-job if a future job needs to write (e.g.
+# posting a check run or comment).
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # Unit + data-validation tests only (tests/data + tests/unit — see
+      # vitest.config.ts). E2E (Playwright) and `build:data` are
+      # intentionally not run here:
+      #  - E2E needs a running dev server and browser binaries, and is
+      #    covered separately/manually rather than gating every push.
+      #  - build:data downloads large upstream dictionaries and generates
+      #    ~2,200 stroke-data files (public/data/strokes/, gitignored) —
+      #    too slow/heavy for a per-push CI job. tests/data/strokes.test.ts
+      #    self-skips when that directory doesn't exist (see the test file),
+      #    so `npm test` still passes cleanly on a fresh checkout without it.
+      - name: Test
+        run: npm test
